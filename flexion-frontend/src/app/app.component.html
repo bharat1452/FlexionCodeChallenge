@@ -1,0 +1,56 @@
+<h1>Flexion Unit Conversion</h1>
+<div>
+    <form [formGroup]= "unitConversionForm" (ngSubmit)="onSubmit()">
+        <div class="parent">
+            <div class="left">
+                <div class="inner">
+                    Input Numerical Value: <br>
+                    <input type="number" id="inputValue" formControlName = "inputValue" required>
+                    <div class="error"
+                        *ngIf="(unitConversionFormControl.inputValue.touched || showResult) && unitConversionFormControl.inputValue.errors?.required">
+                        Input Numerical Value is required
+                    </div>
+                </div>
+                <div class="inner">
+                    Input Unit of Measure:<br>
+                    <input type="text" formControlName = "inputUnit" required>
+                    <div class="error"
+                        *ngIf="(unitConversionFormControl.inputUnit.touched || showResult) && unitConversionFormControl.inputUnit.errors?.required">
+                        Input Unit of Measure is required
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span class="arrow">&#8594;</span>
+            </div>
+            <div class="right">
+                <div class="inner">
+                    Target Unit of Measure:<br>
+                    <input type="text" formControlName = "targetUnit" required>
+                    <div class="error"
+                        *ngIf="(unitConversionFormControl.targetUnit.touched || showResult) && unitConversionFormControl.targetUnit.errors?.required">
+                        Target Unit of Measure is required
+                    </div>
+                </div>
+                <div class="inner">
+                    Student's Response:<br>
+                    <input type="text" formControlName = "studentResponse" required>
+                    <div class="error"
+                        *ngIf="(unitConversionFormControl.studentResponse.touched || showResult) && unitConversionFormControl.studentResponse.errors?.required">
+                        Student's Response is required
+                </div>    
+                </div>
+            </div>
+        </div>
+        <div class="centerButton">
+            <button class="button button1" type="submit" [disabled]="!unitConversionForm.valid">Result</button>&nbsp;&nbsp;
+            <button class="button button2" (click)="onReset()" type="reset">Reset</button>
+        </div>
+    </form>
+    <div class="result" *ngIf="showResult"> 
+        <h4>Student Result :</h4>&nbsp;
+        <div [ngClass]="studentResult.result">
+            <h4>{{ studentResult.result }}</h4>
+        </div>
+</div>
+</div>
